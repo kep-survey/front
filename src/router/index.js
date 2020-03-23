@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Dashboard from '../views/Dashboard.vue'
 import Status from '../views/Status.vue'
 import SurveyEdit from '../views/SurveyEdit.vue'
 import SurveyDeploy from '../views/SurveyDeploy.vue'
 import SurveyResult from '../views/SurveyResult.vue'
-
+import SurveyResultDetail from '../views/SurveyResultDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -50,9 +51,9 @@ const routes = [
         component: SurveyResult
     },
     {
-        path: '/survey/result/:survey_id',
-        name: 'surveyResult',
-        component: SurveyResult
+        path: '/survey/result/:bot_user_id',
+        name: 'surveyResultDetail',
+        component: SurveyResultDetail
     }
 ]
 
