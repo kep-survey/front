@@ -71,8 +71,6 @@
 					surveyId: inputSurveyId,
 					status: inputStatus
 				}).then(res => {
-					console.log(res);
-
 					if (res.data.result === 'true') {
 
 						if (this.status === 2) {
@@ -121,7 +119,6 @@
 
 				axios.get('http://localhost:8081/api/getSurveyInfo?surveyId=' + this.surveyId)
 				.then(res => {
-					console.log(res);
 					let welcomeMsg = res.data.welcomeMsg;
 					let completeMsg = res.data.completeMsg;
 

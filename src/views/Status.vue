@@ -52,7 +52,6 @@
 				
 				axios.get('http://localhost:8081/api/getSurveyStatus?registerId=' + this.registerId)
 				.then(res => {
-					console.log(res);
 					this.statusList = res.data.statusList;
 				})
 				.catch(err => {

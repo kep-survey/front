@@ -28,34 +28,9 @@
 		name: 'SurveyResult',
 		components: {},
 		data: () => ({
-			surveyId: 34,
+			surveyId: 1,
 			surveyTitle: "설문 봇 수요조사",
-			resultList: [
-				{ 
-					botUserId: "botUserId1", 
-					surveyDate: "2020.03.23 13:56:02"
-				},
-				{ 
-					botUserId: "botUserId2", 
-					surveyDate: "2020.03.24 19:56:02"
-				},
-				{ 
-					botUserId: "botUserId3", 
-					surveyDate: "2020.03.25 19:56:02"
-				},
-				{ 
-					botUserId: "botUserId4", 
-					surveyDate: "2020.03.26 19:56:02"
-				},
-				{ 
-					botUserId: "botUserId5", 
-					surveyDate: "2020.03.27 19:56:02"
-				},
-				{ 
-					botUserId: "botUserId6", 
-					surveyDate: "2020.03.28 19:56:02"
-				}
-			],
+			resultList: [],
 			headers: [
 				{
 					text: 'botUserId',
@@ -63,21 +38,20 @@
 					sortable: false,
 					value: 'botUserId',
 				},
-				{ text: '응답 일시', value: 'surveyDate' },
+				{ text: '응답 일시', value: 'participationTime' },
 				{ text: '상세 조회', value: 'actions', sortable: false }
 			]
 		}),
 		methods: {
-			created: function () {
+		},
+		created: function () {
 				const axios = require('axios');
 				
-				axios.get('/api/getSurveyResultList?surveyId=' + this.surveyId)
+				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + this.surveyId)
 				.then(res => {
-					console.log(res);
-					this.resultList = res.resultList;
+					this.resultList = res.data.resultList;
 				}) 
 			}
-		}
 	}
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="detailUnit">
-        <span class="font-weight-bold" style="margin-bottom:1rem">{{botUserId}}</span>
+        <span class="font-weight-bold" style="margin-bottom:1rem">botUserId: {{botUserId}}</span>
         <template v-for="(item, index) in result">
             <v-card class="question pa-3" v-bind:key="'unit-' + index" width="700" min-height="40" elevation="3" style="margin-bottom:1.5rem">{{ index + 1 }}. {{item.question}}</v-card>
             <div class="options" v-bind:key="'options-' + index " v-if="item.type === 'choice'" style="margin-bottom:2rem">
@@ -8,7 +8,7 @@
                     <span>{{option.content}}</span>
                 </v-card>
             </div>
-            <span v-bind:key=index v-else>- {{item.answer}}</span>
+            <span style="margin-bottom:2rem" v-bind:key=index v-else>- {{item.answer}}</span>
         </template> 
     </div>
 </template>
