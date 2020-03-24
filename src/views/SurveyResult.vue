@@ -49,7 +49,6 @@
 				
 				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + this.surveyId)
 				.then(res => {
-					console.log(res);
 					this.resultList = res.data.resultList;
 				}) 
 			}
