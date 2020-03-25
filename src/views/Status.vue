@@ -1,26 +1,28 @@
 <template>
 	<div class="status">
-		<h1><span class="font-weight-light" style="margin-bottom: 2rem;">설문</span>현황</h1>
-		<v-data-table
-			:headers="headers"
-			:items="statusList"
-			:items-per-page="10"
-			:footer-props="{
-				showFirstLastPage: true,
-				firstIcon: 'mdi-arrow-collapse-left',
-				lastIcon: 'mdi-arrow-collapse-right',
-				prevIcon: 'mdi-minus',
-				nextIcon: 'mdi-plus'
-			}"
-			:sort-by="['endDate', 'startDate']"
-			:sort-desc="[true, true]"
-			class="elevation-1"
-			style="margin-top:2rem"
-		>
-			<template v-slot:item.actions="{ item }">
-				<v-btn text small :to="'survey/result/' + item.surveyId">이동</v-btn>
-			</template>
-		</v-data-table>
+		<v-container class="mb-8">
+			<h1><span class="font-weight-light" style="margin-bottom: 2rem;">설문</span>현황</h1>
+			<v-data-table
+				:headers="headers"
+				:items="statusList"
+				:items-per-page="10"
+				:footer-props="{
+					showFirstLastPage: true,
+					firstIcon: 'mdi-arrow-collapse-left',
+					lastIcon: 'mdi-arrow-collapse-right',
+					prevIcon: 'mdi-minus',
+					nextIcon: 'mdi-plus'
+				}"
+				:sort-by="['endDate', 'startDate']"
+				:sort-desc="[true, true]"
+				class="elevation-1"
+				style="margin-top:2rem"
+			>
+				<template v-slot:item.actions="{ item }">
+					<v-btn text small :to="'survey/result/' + item.surveyId">이동</v-btn>
+				</template>
+			</v-data-table>
+		</v-container>
 	</div>
 </template>
 

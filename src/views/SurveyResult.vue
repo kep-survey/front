@@ -1,25 +1,27 @@
 <template>
 	<div class="surveyResult">
-		<h1><span class="font-weight-light">결과</span>조회</h1>
-		<h1 class="surveyTitle" style="margin-top: 2rem;">{{surveyTitle}}</h1>
-		<v-data-table
-			:headers="headers"
-			:items="resultList"
-			:items-per-page="10"
-			:footer-props="{
-				showFirstLastPage: true,
-				firstIcon: 'mdi-arrow-collapse-left',
-				lastIcon: 'mdi-arrow-collapse-right',
-				prevIcon: 'mdi-minus',
-				nextIcon: 'mdi-plus'
-			}"
-			class="elevation-1"
-			style="margin-top:2rem"
-		>
-			<template v-slot:item.actions="{ item }">
-				<v-btn text small :to="'/survey/detail/' + surveyId + '/' + item.botUserId">이동</v-btn>
-			</template>
-		</v-data-table>
+		<v-container class="mb-8">
+			<h1><span class="font-weight-light">결과</span>조회</h1>
+			<h1 class="surveyTitle" style="margin-top: 2rem;">{{surveyTitle}}</h1>
+			<v-data-table
+				:headers="headers"
+				:items="resultList"
+				:items-per-page="10"
+				:footer-props="{
+					showFirstLastPage: true,
+					firstIcon: 'mdi-arrow-collapse-left',
+					lastIcon: 'mdi-arrow-collapse-right',
+					prevIcon: 'mdi-minus',
+					nextIcon: 'mdi-plus'
+				}"
+				class="elevation-1"
+				style="margin-top:2rem"
+			>
+				<template v-slot:item.actions="{ item }">
+					<v-btn text small :to="'/survey/detail/' + surveyId + '/' + item.botUserId">이동</v-btn>
+				</template>
+			</v-data-table>
+		</v-container>
 	</div>
 </template>
 

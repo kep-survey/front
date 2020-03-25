@@ -1,51 +1,53 @@
 <template>
 	<div class="surveyDeploy">
-		<h1><span class="font-weight-light">설문</span>배포</h1>
-		<v-container fluid class="deploy-container">
-			<v-row>
-				<v-col cols="3">
-					<span class="font-weight-bold">설문배포</span>
-					<v-tooltip bottom>
-						<template v-slot:activator="{ on }">
-							<v-icon dark v-on="on">info</v-icon>
-						</template>
-						<span>설문을 개시하려면 우측 "배포하기" 버튼을 클릭하세요<br>배포 후 클릭하면 설문이 종료됩니다</span>
-					</v-tooltip>
-				</v-col>
-				<v-col cols="7">
-					<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickDeploy" large color="accent">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</v-btn> 
-				</v-col>
-			</v-row>
-			<v-row>
-				<v-col cols="3">
-					<span class="font-weight-bold">환영메시지</span>
-					<v-tooltip bottom>
-						<template v-slot:activator="{ on }">
-							<v-icon dark v-on="on">info</v-icon>
-						</template>
-						<span>설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요</span>
-					</v-tooltip>
-				</v-col>
-				<v-col cols="7">
-					<v-textarea solo v-model="welcomeMsg"></v-textarea>
-					<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
-				</v-col>
-			</v-row>
-			<v-row>
-				<v-col cols="3">
-					<span class="font-weight-bold">종료메시지</span>
-					<v-tooltip bottom>
-						<template v-slot:activator="{ on }">
-							<v-icon dark v-on="on">info</v-icon>
-						</template>
-						<span>설문 종료 시 응답자에게 노출되는 메시지를 설정해주세요</span>
-					</v-tooltip>
-				</v-col>
-				<v-col cols="7"> 
-					<v-textarea solo v-model="completeMsg"></v-textarea>
-					<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
-				</v-col>
-			</v-row>
+		<v-container class="mb-8">
+			<h1><span class="font-weight-light">설문</span>배포</h1>
+			<v-container fluid class="deploy-container">
+				<v-row>
+					<v-col cols="3">
+						<span class="font-weight-bold">설문배포</span>
+						<v-tooltip bottom>
+							<template v-slot:activator="{ on }">
+								<v-icon dark v-on="on">info</v-icon>
+							</template>
+							<span>설문을 개시하려면 우측 "배포하기" 버튼을 클릭하세요<br>배포 후 클릭하면 설문이 종료됩니다</span>
+						</v-tooltip>
+					</v-col>
+					<v-col cols="7">
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickDeploy" large color="accent">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</v-btn> 
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col cols="3">
+						<span class="font-weight-bold">환영메시지</span>
+						<v-tooltip bottom>
+							<template v-slot:activator="{ on }">
+								<v-icon dark v-on="on">info</v-icon>
+							</template>
+							<span>설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요</span>
+						</v-tooltip>
+					</v-col>
+					<v-col cols="7">
+						<v-textarea solo v-model="welcomeMsg"></v-textarea>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col cols="3">
+						<span class="font-weight-bold">종료메시지</span>
+						<v-tooltip bottom>
+							<template v-slot:activator="{ on }">
+								<v-icon dark v-on="on">info</v-icon>
+							</template>
+							<span>설문 종료 시 응답자에게 노출되는 메시지를 설정해주세요</span>
+						</v-tooltip>
+					</v-col>
+					<v-col cols="7"> 
+						<v-textarea solo v-model="completeMsg"></v-textarea>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+					</v-col>
+				</v-row>
+			</v-container>
 		</v-container>
 	</div>
 </template>

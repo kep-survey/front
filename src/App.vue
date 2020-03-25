@@ -1,5 +1,6 @@
 <template>
     <v-app id="app">
+        <!-- 네비게이터 메뉴 -->
         <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app dark class="darkPrimary py-12 px-10" width="300">
             <v-layout justify-space-between column fill-height>
                 <!-- 상단 메뉴 -->
@@ -33,12 +34,30 @@
                 </v-list>
             </v-layout>
         </v-navigation-drawer>
-
-        <v-content id="content-container">
-            <v-container class="fill-height secondary pa-12" fluid>
-                <router-view style="margin-top: 3.3rem" class="fill-height" fluid></router-view>
+        <!-- 페이지 라우터 -->
+        <v-content id="content-container" >
+            <v-container justify-center class="fill-height secondary pa-12" fluid>
+                <router-view @showTopAlert="showTopAlert" @showBottomAlert="showBottomAlert" @setPreview="preview = $event" style="margin-top: 3.3rem; max-width: 1400px; width: 100%" class="fill-height" fluid></router-view>
             </v-container>
         </v-content>
+        <!-- 프리뷰 -->
+        <v-navigation-drawer :stateless="true" right v-model="preview" :clipped="$vuetify.breakpoint.lgAndUp" app class="previewBackground py-12 px-10" width="400">
+            <v-container align-center justify-center fill-height>
+                <v-img max-width="300px" src="@/assets/images/preview_phone.png"></v-img>
+            </v-container>
+        </v-navigation-drawer>
+
+        <!-- top 알림창 -->
+        <v-snackbar v-model="topAlert.show" :top="true" :multi-line="true" :color="topAlert.type" :timeout="topAlert.timeout" class="mb-12">
+            {{ topAlert.text }}
+            <v-btn dark text @click="topAlert.show = false">Close</v-btn>
+        </v-snackbar>
+
+        <!-- bottom 알림창 -->
+        <v-snackbar v-model="bottomAlert.show" :bottom="true" :multi-line="true" :color="bottomAlert.type" :timeout="bottomAlert.timeout" class="mb-12">
+            {{ topAlert.text }}
+            <v-btn dark text @click="bottomAlert.show = false">Close</v-btn>
+        </v-snackbar>
   </v-app>
 </template>
 
@@ -49,6 +68,20 @@ export default {
         source: String,
     },
     data: () => ({
+        // 알림창(snackbar) 속성 지정
+        topAlert: {
+            show: false,
+            type: "success",
+            text: "msg",
+            timeout : 1000
+        },
+        bottomAlert: {
+            show: false,
+            type: "success",
+            text: "msg",
+            timeout : 1000
+        },
+        preview : false,
         dialog: false,
         drawer: null,
         items: {
@@ -66,15 +99,33 @@ export default {
         },
     }),
     methods: {
-        route: function(items) {
+        route(items) {
             let routeName = this.$route.name
-            for(let i = 0; i < items.main.length; i++){ // in 키워드 사용할시 undefined
+        
+            for(var i in items.main){ // in 키워드 사용할시 undefined
                 if (routeName == items.main[i].link){ // main 계열 요청일 경우
                     return items.main
                 }
             }
             return items.survey
-        }
+        },
+
+        // 상단 알림창 보이기
+        showTopAlert(type, text, timeout=3000){
+            // success, info, warning, error
+            this.topAlert.type=type
+            this.topAlert.text = text
+            this.topAlert.show = true
+            this.topAlert.timeout = timeout
+        },
+        // 하단 알림창 보이기
+        showBottomAlert(type, text, timeout=3000){
+            // success, info, warning, error
+            this.bottomAlert.type=type
+            this.bottomAlert.text = text
+            this.bottomAlert.show = true
+            this.bottomAlert.timeout = timeout
+        },
     },
 }
 </script>
@@ -84,6 +135,10 @@ export default {
 
     * {
         font-family : "Noto Sans KR", sans-serif !important;
+    }
+
+    .v-dialog {
+        box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12) !important;
     }
 
     .logo-title{
@@ -96,9 +151,5 @@ export default {
 
     .nav-bottom-text{
         font-size: 1.25rem !important;
-    }
-
-    #content-container *{
-        color : #2E2E2E;
     }
 </style>
