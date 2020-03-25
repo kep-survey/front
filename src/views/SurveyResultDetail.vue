@@ -16,13 +16,13 @@
 
 	export default {
 		name: 'SurveyResultDetail',
-		components: {'detail-unit': DetailUnit},
+        components: {'detail-unit': DetailUnit},
 		data: () => ({
-			surveyId: 1,
+            surveyId: window.location.pathname.split('/')[3],
             surveyTitle: "설문 봇 수요조사",
-            botUserId: window.location.pathname.split('/')[3],
+            botUserId: window.location.pathname.split('/')[4],
 			result: []
-		}),
+        }),
 		methods: {
         },
         created: function () {

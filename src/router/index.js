@@ -48,12 +48,17 @@ const routes = [
     {
         path: '/survey/result/',
         name: 'surveyResult',
-        component: SurveyResult
+        component: SurveyResult,
     },
     {
-        path: '/survey/result/:bot_user_id',
+        path: '/survey/result/:survey_id',
+        name: 'surveyResult',
+        component: SurveyResult,
+    },
+    {
+        path: '/survey/detail/:survey_id/:bot_user_id',
         name: 'surveyResultDetail',
-        component: SurveyResultDetail
+        component: SurveyResultDetail,
     }
 ]
 

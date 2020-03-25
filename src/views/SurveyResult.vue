@@ -17,7 +17,7 @@
 			style="margin-top:2rem"
 		>
 			<template v-slot:item.actions="{ item }">
-				<v-btn text small :to="'result/' + item.botUserId">이동</v-btn>
+				<v-btn text small :to="'/survey/detail/' + surveyId + '/' + item.botUserId">이동</v-btn>
 			</template>
 		</v-data-table>
 	</div>
@@ -28,7 +28,7 @@
 		name: 'SurveyResult',
 		components: {},
 		data: () => ({
-			surveyId: 1,
+			surveyId: window.location.pathname.split('/')[3],
 			surveyTitle: "설문 봇 수요조사",
 			resultList: [],
 			headers: [
@@ -46,11 +46,15 @@
 		},
 		created: function () {
 				const axios = require('axios');
-				
-				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + this.surveyId)
+				const surveyId = window.location.pathname.split('/')[3];
+
+				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
 				.then(res => {
 					this.resultList = res.data.resultList;
-				}) 
+				})
+				.catch(err => {
+					console.log(err);
+				})
 			}
 	}
 </script>

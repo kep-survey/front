@@ -17,8 +17,8 @@
 			class="elevation-1"
 			style="margin-top:2rem"
 		>
-			<template v-slot:item.actions="{ }">
-				<v-btn text small :to="'survey/result'">이동</v-btn>
+			<template v-slot:item.actions="{ item }">
+				<v-btn text small :to="'survey/result/' + item.surveyId">이동</v-btn>
 			</template>
 		</v-data-table>
 	</div>
