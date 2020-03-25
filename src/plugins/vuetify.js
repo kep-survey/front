@@ -9,8 +9,9 @@ export default new Vuetify({
             // 테마 색상 코드 
             light: {
                 darkPrimary: '#2E2E2E',
-                primary: '#000000',
+                primary: '#FFFFFF',
                 secondary: '#F3F4F7',
+                tertiary: '#000000',
                 accent: '#FAE100',
                 previewBackground: '#E9E9E9',
             },

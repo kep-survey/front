@@ -169,7 +169,7 @@
             },
             setSurveyList() {
                 // api call
-                this.$http.get('/api/getSurveyList').then(response => {
+                this.$http.get('http://localhost:8081/api/getSurveyList').then(response => {
                     if(response.data.result){
                         this.surveys = response.data.list
                     } else {

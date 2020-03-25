@@ -8,13 +8,13 @@
 						<span class="font-weight-bold">설문배포</span>
 						<v-tooltip bottom>
 							<template v-slot:activator="{ on }">
-								<v-icon dark v-on="on">info</v-icon>
+								<v-icon white v-on="on">info</v-icon>
 							</template>
 							<span>설문을 개시하려면 우측 "배포하기" 버튼을 클릭하세요<br>배포 후 클릭하면 설문이 종료됩니다</span>
 						</v-tooltip>
 					</v-col>
 					<v-col cols="7">
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickDeploy" large color="accent">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</v-btn> 
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickDeploy" large color="accent"><span class="btnText">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</span></v-btn> 
 					</v-col>
 				</v-row>
 				<v-row>
@@ -22,7 +22,7 @@
 						<span class="font-weight-bold">환영메시지</span>
 						<v-tooltip bottom>
 							<template v-slot:activator="{ on }">
-								<v-icon dark v-on="on">info</v-icon>
+								<v-icon white v-on="on">info</v-icon>
 							</template>
 							<span>설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요</span>
 						</v-tooltip>
@@ -37,7 +37,7 @@
 						<span class="font-weight-bold">종료메시지</span>
 						<v-tooltip bottom>
 							<template v-slot:activator="{ on }">
-								<v-icon dark v-on="on">info</v-icon>
+								<v-icon white v-on="on">info</v-icon>
 							</template>
 							<span>설문 종료 시 응답자에게 노출되는 메시지를 설정해주세요</span>
 						</v-tooltip>
@@ -151,6 +151,10 @@
 		margin-top: 2rem;
 		padding: 0;
 		font-size: 20px;
+	}
+
+	.btnText {
+		color: black !important;
 	}
 
 	.row {

@@ -275,7 +275,7 @@
 
             // 설문 이름, 설명 저장하기
             setSurveyInfo() {
-                const url = '/api/setSurveyInfo'
+                const url = 'http://localhost:8081/api/setSurveyInfo'
                 const param = {
                     surveyId: this.$route.params.survey_id, 
                     title: this.survey_input.title,
@@ -298,7 +298,7 @@
             },
             // 설문 이름, 설명 가져오기
             getSurveyInfo() {
-                const url = '/api/getSurveyInfo'
+                const url = 'http://localhost:8081/api/getSurveyInfo'
                 const config = {
                     params : {
                         surveyId: this.$route.params.survey_id 
@@ -322,7 +322,7 @@
             },
             // 설문 질문 가져오기
             getQuestions() {
-                const url = '/api/getSurvey'
+                const url = 'http://localhost:8081/api/getSurvey'
                 const config = {
                     params : {
                         surveyId: this.$route.params.survey_id 
@@ -343,7 +343,7 @@
             // 설문 저장하기
             saveSurvey(){
                 if(this.$refs.questionForm.validate()){
-                    const url = '/api/saveSurvey'
+                    const url = 'http://localhost:8081/api/saveSurvey'
                     const param = {
                         surveyId: this.$route.params.survey_id,
                         questions: this.questions
