@@ -13,7 +13,7 @@
                         </v-list-item-content>
                     </v-list-item>
                     <template v-for="(item, index) in route(items)">
-                        <v-list-item v-bind:key="index" v-if="!item.bottom" :to="{name : item.link}"  active-class="accent--text font-weight-bold" link>
+                        <v-list-item v-bind:key="index" v-if="!item.bottom" :to="routePageSurveyId(item.path)"  active-class="accent--text font-weight-bold" link>
                             <v-icon v-if="item.icon" left>{{ item.icon }}</v-icon>
                             <v-list-item-title class="nav-text" v-bind:class="{ 'font-weight-bold' : item.bold }">
                                 {{ item.text }}
@@ -24,7 +24,7 @@
                 <!-- 하단 메뉴 -->
                 <v-list flat>
                     <template v-for="(item, index) in route(items)">
-                        <v-list-item justify-end v-bind:key="index" v-if="item.bottom" :to="{name : item.link}" active-class="accent--text" link>
+                        <v-list-item justify-end v-bind:key="index" v-if="item.bottom" :to="item.path" active-class="accent--text" link>
                             <v-icon v-if="item.icon" left>{{ item.icon }}</v-icon>
                             <v-list-item-title class="nav-bottom-text" v-bind:class="{ 'font-weight-bold' : item.bold }">
                                 {{ item.text }}
@@ -87,23 +87,23 @@ export default {
         items: {
             // 라우팅
             main : [
-                { text: 'Dashboard', link: 'dashboard' },
-                { text: '설문 현황', link: 'status' }
+                { text: 'Dashboard', path: '/dashboard' },
+                { text: '설문 현황', path: '/status' }
             ],
             survey: [
-                { text: '내 설문 편집', link: 'surveyEdit' },
-                { text: '배포', link: 'surveyDeploy' },
-                { text: '설문 결과 조회', link: 'surveyResult' },
-                { text: 'Dashboard', link: 'dashboard', icon: "mdi-arrow-left-bold-circle", bottom : true, bold : true}
+                { text: '내 설문 편집', path: '/survey/edit' },
+                { text: '배포', path: '/survey/deploy' },
+                { text: '설문 결과 조회', path: '/survey/result' },
+                { text: 'Dashboard', path: '/dashboard', icon: "mdi-arrow-left-bold-circle", bottom : true, bold : true}
             ]
         },
     }),
     methods: {
         route(items) {
-            let routeName = this.$route.name
+            let routePath = this.$route.path
         
             for(var i in items.main){ // in 키워드 사용할시 undefined
-                if (routeName == items.main[i].link){ // main 계열 요청일 경우
+                if (routePath == items.main[i].path){ // main 계열 요청일 경우
                     return items.main
                 }
             }
@@ -126,7 +126,13 @@ export default {
             this.bottomAlert.show = true
             this.bottomAlert.timeout = timeout
         },
-    },
+        routePageSurveyId(path){
+            if(this.$route.params.survey_id){
+                return path+"/"+this.$route.params.survey_id
+            }
+            return path
+        }
+    }
 }
 </script>
 

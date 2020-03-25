@@ -167,7 +167,7 @@
                     this.showTopAlert("error", "데이터를 받아오지 못했습니다. 잠시후 다시 시도해주세요.")
                 })
             },
-            setSurveyList() {
+            setSurveyList() { 
                 // api call
                 this.$http.get('/api/getSurveyList').then(response => {
                     if(response.data.result){
