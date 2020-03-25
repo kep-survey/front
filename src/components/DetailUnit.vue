@@ -2,9 +2,9 @@
     <div class="detailUnit">
         <span class="font-weight-bold" style="margin-bottom:1rem">botUserId: {{botUserId}}</span>
         <template v-for="(item, index) in result">
-            <v-card class="question pa-3" v-bind:key="'unit-' + index" width="700" min-height="40" elevation="3" style="margin-bottom:1.5rem">{{ index + 1 }}. {{item.question}}</v-card>
+            <v-card class="question pa-3 font-weight-bold" v-bind:key="'unit-' + index" width="700" min-height="40" elevation="3" style="margin-bottom:1.5rem">{{ index + 1 }}. {{item.question}}</v-card>
             <div class="options" v-bind:key="'options-' + index " v-if="item.type === 'choice'" style="margin-bottom:2rem">
-                <v-card class="option" v-bind:color="option.content === item.answer ? answered : normal" v-bind:key="'option-' + index" v-for="(option, index) in item.options">
+                <v-card class="option pa-3" v-bind:color="option.content === item.answer ? answered : normal" v-bind:key="'option-' + index" v-for="(option, index) in item.options">
                     <span>{{option.content}}</span>
                 </v-card>
             </div>
@@ -50,7 +50,7 @@
     }
 
     .option {
-        min-width: 70px;
+        width: auto;
         min-height: 40px;
         margin-right: 15px;
         display: flex;
