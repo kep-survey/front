@@ -1,6 +1,8 @@
 <template>
 	<div class="status">
-		<h1><span class="font-weight-light">설문</span>현황</h1>
+		<v-container class="mb-8">
+			<h1><span class="font-weight-light">설문</span>현황</h1>
+		</v-container>
 	</div>
 </template>
 
