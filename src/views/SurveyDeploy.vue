@@ -95,7 +95,7 @@
 				const inputCompleteMsg = this.$data.completeMsg;
 
 				if (flag === 'welcome') {
-					axios.post('http://localhost:8081/api/setSurveyInfo', {
+					axios.post('http://localhost:8081/api/setSurveyMsg', {
 					surveyId: inputSurveyId,
 					welcomeMsg: inputWelcomeMsg,
 					completeMsg: this.completeMsg
@@ -105,7 +105,7 @@
 					alert("요청이 정상적으로 수행되었습니다!");
 				})
 				} else {
-					axios.post('http://localhost:8081/api/setSurveyInfo', {
+					axios.post('http://localhost:8081/api/setSurveyMsg', {
 					surveyId: inputSurveyId,
 					welcomeMsg: this.welcomeMsg,
 					completeMsg: inputCompleteMsg
@@ -119,7 +119,7 @@
 		created: function () {
 				const axios = require('axios');
 
-				axios.get('http://localhost:8081/api/getSurveyInfo?surveyId=' + this.surveyId)
+				axios.get('http://localhost:8081/api/getSurveyDeploy?surveyId=' + this.surveyId)
 				.then(res => {
 					let welcomeMsg = res.data.welcomeMsg;
 					let completeMsg = res.data.completeMsg;
