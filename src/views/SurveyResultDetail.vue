@@ -28,7 +28,7 @@
         created: function () {
 				const axios = require('axios');
 				
-				axios.get('http://localhost:8081/api/getSurveyResultDetail?surveyId='+ this.surveyId + '&botUserId=' + this.botUserId)
+				axios.get('http://localhost:8081/api/getSurveyResultDetail?surveyId='+  this.$route.params.survey_id + '&botUserId=' +  this.$route.params.bot_user_id)
 				.then(res => {
 					this.result = res.data.result;
 				}) 
@@ -39,6 +39,7 @@
 <style scoped>
     .resultHeader {
         display: flex; 
+        width: 700px;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;

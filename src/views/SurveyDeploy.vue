@@ -119,7 +119,7 @@
 		created: function () {
 				const axios = require('axios');
 
-				axios.get('http://localhost:8081/api/getSurveyDeploy?surveyId=' + this.surveyId)
+				axios.get('http://localhost:8081/api/getSurveyDeploy?surveyId=' + this.$route.params.survey_id)
 				.then(res => {
 					let welcomeMsg = res.data.welcomeMsg;
 					let completeMsg = res.data.completeMsg;

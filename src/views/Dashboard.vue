@@ -77,7 +77,7 @@
                                                 <v-icon class="mr-2">mdi-delete</v-icon> 삭제
                                             </v-list-item-title>
                                         </v-list-item>
-                                        <v-list-item to="" class="px-5">
+                                        <v-list-item :to="'/survey/result/' + survey.id" class="px-5">
                                             <v-list-item-title>
                                                 <v-icon class="mr-2">mdi-file-chart</v-icon> 결과 조회
                                             </v-list-item-title>
@@ -146,7 +146,7 @@
             },
 
             createSurvey() {
-                const url = '/api/createSurvey'
+                const url = 'http://localhost:8081/api/createSurvey'
                 const param = {
                     title: this.newSurvey.title,
                     description: this.newSurvey.description
@@ -181,7 +181,7 @@
             },
 
             deleteSurvey(id) {
-                const url = '/api/deleteSurvey'
+                const url = 'http://localhost:8081/api/deleteSurvey'
                 const param = {
                     surveyId: id,
                 }
