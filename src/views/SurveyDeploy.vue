@@ -14,7 +14,7 @@
 						</v-tooltip>
 					</v-col>
 					<v-col cols="7">
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickDeploy" large color="accent"><span class="btnText">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</span></v-btn> 
+						<v-btn :disabled="status == 3 ? true : false" large color="accent" @click.stop="dialog = true"><span class="btnText">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</span></v-btn> 
 					</v-col>
 				</v-row>
 				<v-row>
@@ -48,6 +48,48 @@
 					</v-col>
 				</v-row>
 			</v-container>
+			<v-container>
+				<v-dialog
+					v-model="dialog"
+					max-width="500"
+					>
+					<v-card>
+						<template v-if="status === 1">
+							<v-card-title class="headline">설문 배포</v-card-title>
+							<v-card-text>
+							설문 배포 진행 시 해당 설문의 수정 또는 편집이 더이상 불가능합니다. 그래도 진행하시겠습니까?
+							</v-card-text>
+						</template>
+						
+						<template v-else>
+							<v-card-title class="headline">설문 종료</v-card-title>
+							<v-card-text>
+							설문 종료 시 해당 설문에 대한 응답 수집이 불가능하며, 재배포 할 수 없습니다. 그래도 진행하시겠습니까?
+							</v-card-text>
+						</template>
+						<v-card-actions>
+							<v-spacer></v-spacer>
+
+							<v-btn
+								color="green darken-1"
+								text
+								@click="dialog = false"
+							>
+								취소
+							</v-btn>
+
+							<v-btn
+								color="green darken-1"
+								text
+								@click="dialog = false"
+								v-on:click="onClickDeploy"
+							>
+								확인
+							</v-btn>
+						</v-card-actions>
+					</v-card>
+				</v-dialog>
+			</v-container>
 		</v-container>
 	</div>
 </template>
@@ -60,7 +102,8 @@
 			surveyId: 1,
 			welcomeMsg: "",
 			completeMsg: "",
-			status: 1
+			status: 1,
+			dialog: false
 		}),
 		methods: {
 			onClickDeploy: function () {
@@ -96,22 +139,15 @@
 
 				if (flag === 'welcome') {
 					axios.post('http://localhost:8081/api/setSurveyMsg', {
-					surveyId: inputSurveyId,
-					welcomeMsg: inputWelcomeMsg,
-					completeMsg: this.completeMsg
-				})
-				.then(res => {
-					console.log(res);
-					alert("요청이 정상적으로 수행되었습니다!");
+						flag: 'welcome',
+						surveyId: inputSurveyId,
+						welcomeMsg: inputWelcomeMsg,
 				})
 				} else {
 					axios.post('http://localhost:8081/api/setSurveyMsg', {
-					surveyId: inputSurveyId,
-					welcomeMsg: this.welcomeMsg,
-					completeMsg: inputCompleteMsg
-				}).then(res => {
-					console.log(res);
-					alert("요청이 정상적으로 수행되었습니다!");
+						flag: 'complete',
+						surveyId: inputSurveyId,
+						completeMsg: inputCompleteMsg
 				})
 				}
 			}
@@ -123,14 +159,6 @@
 				.then(res => {
 					let welcomeMsg = res.data.welcomeMsg;
 					let completeMsg = res.data.completeMsg;
-
-					if (welcomeMsg === '') {
-						welcomeMsg = "아직 설정된 환영 메시지가 없습니다.";
-					}
-
-					if (completeMsg === '') {
-						completeMsg = "아직 설정된 종료 메시지가 없습니다.";
-					}
 
 					this.welcomeMsg = welcomeMsg;
 					this.completeMsg = completeMsg;

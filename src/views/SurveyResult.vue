@@ -30,8 +30,8 @@
 		name: 'SurveyResult',
 		components: {},
 		data: () => ({
-			surveyId: window.location.pathname.split('/')[3],
-			surveyTitle: "설문 봇 수요조사",
+			surveyId: 0,
+			surveyTitle: "",
 			resultList: [],
 			headers: [
 				{
@@ -48,11 +48,13 @@
 		},
 		created: function () {
 				const axios = require('axios');
-				const surveyId = window.location.pathname.split('/')[3];
+				const surveyId = this.$route.params.survey_id;
 
 				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
 				.then(res => {
 					this.resultList = res.data.resultList;
+					this.surveyTitle = res.data.title;
+					this.surveyId = surveyId;
 				})
 				.catch(err => {
 					console.log(err);
