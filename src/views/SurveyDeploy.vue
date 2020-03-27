@@ -96,22 +96,15 @@
 
 				if (flag === 'welcome') {
 					axios.post('http://localhost:8081/api/setSurveyMsg', {
-					surveyId: inputSurveyId,
-					welcomeMsg: inputWelcomeMsg,
-					completeMsg: this.completeMsg
-				})
-				.then(res => {
-					console.log(res);
-					alert("요청이 정상적으로 수행되었습니다!");
+						flag: 'welcome',
+						surveyId: inputSurveyId,
+						welcomeMsg: inputWelcomeMsg,
 				})
 				} else {
 					axios.post('http://localhost:8081/api/setSurveyMsg', {
-					surveyId: inputSurveyId,
-					welcomeMsg: this.welcomeMsg,
-					completeMsg: inputCompleteMsg
-				}).then(res => {
-					console.log(res);
-					alert("요청이 정상적으로 수행되었습니다!");
+						flag: 'complete',
+						surveyId: inputSurveyId,
+						completeMsg: inputCompleteMsg
 				})
 				}
 			}
@@ -123,14 +116,6 @@
 				.then(res => {
 					let welcomeMsg = res.data.welcomeMsg;
 					let completeMsg = res.data.completeMsg;
-
-					if (welcomeMsg === '') {
-						welcomeMsg = "아직 설정된 환영 메시지가 없습니다.";
-					}
-
-					if (completeMsg === '') {
-						completeMsg = "아직 설정된 종료 메시지가 없습니다.";
-					}
 
 					this.welcomeMsg = welcomeMsg;
 					this.completeMsg = completeMsg;
