@@ -29,7 +29,7 @@
 					</v-col>
 					<v-col cols="7">
 						<v-textarea solo v-model="welcomeMsg"></v-textarea>
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="dark-primary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
 					</v-col>
 				</v-row>
 				<v-row>
@@ -44,7 +44,7 @@
 					</v-col>
 					<v-col cols="7"> 
 						<v-textarea solo v-model="completeMsg"></v-textarea>
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="darkPrimary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="dark-primary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
 					</v-col>
 				</v-row>
 			</v-container>

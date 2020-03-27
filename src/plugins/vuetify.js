@@ -8,12 +8,14 @@ export default new Vuetify({
         themes: {
             // 테마 색상 코드 
             light: {
-                darkPrimary: '#2E2E2E',
+                'dark-primary': '#2E2E2E',
                 primary: '#FFFFFF',
                 secondary: '#F3F4F7',
                 tertiary: '#000000',
                 accent: '#FAE100',
-                previewBackground: '#E9E9E9',
+                'preview-background': '#E9E9E9',
+                'chat-background' : '#bacee0',
+                'chat-input': '#999',
             },
         },
     }

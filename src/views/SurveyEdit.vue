@@ -12,14 +12,14 @@
                     <h1>{{ survey.title }}</h1>
                 </v-col>
                 <v-col cols="auto">
-                    <v-btn color="accent" class="font-weight-black darkPrimary--text elevation-3" @click="saveSurvey" large>
+                    <v-btn color="accent" class="font-weight-black dark-primary--text elevation-3" @click="saveSurvey" large>
                         <v-icon class="mr-2">mdi-content-save-all</v-icon> 저장하기
                     </v-btn>
                 </v-col>
                 <v-col cols="auto">
                     <v-dialog v-model="newSurveyDialog" max-width="700px" persistent>
                         <template v-slot:activator="{ on }">
-                            <v-btn color="accent" class="font-weight-black darkPrimary--text elevation-3" v-on="on" large>
+                            <v-btn color="accent" class="font-weight-black dark-primary--text elevation-3" v-on="on" large>
                                 <v-icon class="mr-2">mdi-square-edit-outline</v-icon> 개요 편집
                             </v-btn>
                         </template>
@@ -68,9 +68,9 @@
                     <transition-group>
                         <template v-for="question in questions">
                             <!-- 객관식 -->
-                            <v-card v-bind:key="question.id" class="elevation-5 py-2 px-6" style="margin-bottom: 70px; border-radius:5px;" tile>
-                                <v-container v-if="question.type=='choice'">
-                                    <v-btn color="primary" class="elevation-4 darkPrimary--text font-weight-black" style="margin-top: -70px;" large>
+                            <v-card v-bind:key="question.id" class="elevation-5 py-2 px-6" style="margin-bottom: 70px; border-radius:5px" tile>
+                                <v-container :ripple="false" @click="focusedQuestion = question.questionOrder" v-if="question.type=='choice'">
+                                    <v-btn color="primary" class="elevation-4 dark-primary--text font-weight-black" style="margin-top: -70px;" large>
                                         <v-icon class="mr-2">mdi-checkbox-marked-circle</v-icon> 객관식
                                     </v-btn>
                                     <v-container class="pt-3">
@@ -105,7 +105,7 @@
                                                         </template>
                                                     </transition-group>
                                                 </draggable>
-                                                <v-btn @click="addOption(question.questionOrder)" class="mt-3 elevation-3 darkPrimary font-weight-black" color="primary" large>
+                                                <v-btn @click="addOption(question.questionOrder)" class="mt-3 elevation-3 dark-primary font-weight-black" color="primary" large>
                                                     <v-icon class="mr-2">mdi-plus</v-icon> 옵션 추가
                                                 </v-btn>
                                             </v-col>
@@ -113,8 +113,8 @@
                                     </v-container>
                                 </v-container>
                                 <!-- 주관식 -->
-                                <v-container v-if="question.type=='text'" class="py-12">
-                                    <v-btn color="primary" class="elevation-4 darkPrimary--text font-weight-black" style="margin-top: -140px;" large>
+                                <v-container :ripple="false" @click="focusedQuestion = question.questionOrder" v-if="question.type=='text'" class="py-12">
+                                    <v-btn color="primary" class="elevation-4 dark-primary--text font-weight-black" style="margin-top: -140px;" large>
                                         <v-icon class="mr-2">mdi-tooltip-text</v-icon> 주관식
                                     </v-btn>
                                     <!-- 질문 입력란 -->
@@ -130,22 +130,16 @@
                                     </v-container>
                                 </v-container>
                                 <!-- 질문 요소 컨트롤 -->
-                                <v-container class="elevation-4 primary px-0 py-3" style="width: 45px; position: absolute; top: 50%; right: 0; transform: translate(50%, -50%); border-radius:5px;" >
-                                    <v-row class="ma-0 fill-height">
-                                        <v-col class="px-0 py-2" align="center">
-                                            <v-btn icon class="drag-handle">
+                                <v-container class="elevation-4 primary px-0 py-3"  style="width: 45px; position: absolute; top: 50%; right: 0; transform: translate(50%, -50%); border-radius:5px;" >
+                                    <v-row no-gutter>
+                                        <v-col align="center">
+                                            <v-btn icon class="my-1 drag-handle">
                                                 <v-icon>mdi-drag-variant</v-icon>
                                             </v-btn>
-                                        </v-col>
-
-                                        <v-col class="px-0 py-2" align="center">
-                                            <v-btn icon @click="copyQuestion(question.questionOrder)">
+                                            <v-btn class="my-1" icon @click="copyQuestion(question.questionOrder)">
                                                 <v-icon>mdi-content-copy</v-icon>
                                             </v-btn>
-                                        </v-col>
-
-                                        <v-col class="px-0 py-2" align="center">
-                                            <v-btn icon @click="deleteQuestion(question.questionOrder)">
+                                            <v-btn class="my-1" icon @click="deleteQuestion(question.questionOrder)">
                                                 <v-icon>mdi-delete</v-icon>
                                             </v-btn>
                                         </v-col>
@@ -163,12 +157,12 @@
             <v-container class="bottom-box accent elevation-3">
                 <v-row class="px-4">
                     <v-col cols="auto" align="center" class="py-1">
-                        <v-btn @click="addQuestionsChoice" class="primary darkPrimary--text elevation-4 font-weight-black">
+                        <v-btn @click="addQuestionsChoice" class="primary dark-primary--text elevation-4 font-weight-black">
                             <v-icon class="mr-2">mdi-checkbox-marked-circle</v-icon> 객관식
                         </v-btn>
                     </v-col>
                     <v-col cols="auto" align="center" class="py-1">
-                        <v-btn @click="addQuestionsText" class="primary darkPrimary--text elevation-4 font-weight-black">
+                        <v-btn @click="addQuestionsText" class="primary dark-primary--text elevation-4 font-weight-black">
                             <v-icon class="mr-2">mdi-tooltip-text</v-icon> 주관식
                         </v-btn>
                     </v-col>
@@ -193,6 +187,9 @@
 			drawer: null,
 			status: 0,
 			overlay: false,
+
+            // 선택돼있는 질문
+            focusedQuestion: -1, 
 
             // 알림창(snackbar) 속성 지정
             topAlert: {
@@ -230,6 +227,25 @@
             questions: [], // order로 정렬된 질문 리스트
             save: []
         }),
+
+        watch: {
+            questions: {
+                deep: true,
+                handler: function(newVal) {
+                    // array를 deep으로 검사할경우 메소드는 실행되나 둘이 참조하는 array의 주소는 같기 때문에 newVal과 oldVal의 차이는 없음
+                    // http://vuejs.org/api/#vm-watch
+
+                    if(newVal[this.focusedQuestion] != undefined){
+                        this.$emit('refreshPreview', newVal[this.focusedQuestion])
+                    }
+                }
+            },
+            focusedQuestion: {
+                handler: function() {
+                    this.$emit('refreshPreview', this.questions[this.focusedQuestion])
+                }
+            }
+        },
 
         methods:  {
             // 설문 개요 편집 및 전송
@@ -435,7 +451,16 @@
             },
             // 질문 삭제
             deleteQuestion(questionOrder) {
+                if(questionOrder <= this.focusedQuestion){
+                    if(questionOrder == 0){
+                        this.focusedQuestion = 0
+                    } else{
+                        this.focusedQuestion -=1
+                    }
+                }
+
                 this.questions.splice(questionOrder, 1)
+
                 this.updateQuestionsOrder()
             },
         },
