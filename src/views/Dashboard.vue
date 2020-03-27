@@ -9,7 +9,7 @@
                 <v-col cols="auto">
                     <v-dialog v-model="newSurveyDialog" max-width="700px" persistent>
                         <template v-slot:activator="{ on }">
-                             <v-btn color="accent" class="font-weight-black darkPrimary--text elevation-3" v-on="on" large>
+                             <v-btn color="accent" class="font-weight-black dark-primary--text elevation-3" v-on="on" large>
                                 <v-icon class="mr-2">mdi-pencil</v-icon>새로운 설문
                             </v-btn>
                         </template>
