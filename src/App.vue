@@ -1,7 +1,7 @@
 <template>
     <v-app id="app">
         <!-- 네비게이터 메뉴 -->
-        <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app dark class="darkPrimary py-12 px-10" width="300">
+        <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app dark class="darkPrimary py-12 px-10" width="300" style="z-index: 300">
             <v-layout justify-space-between column fill-height>
                 <!-- 상단 메뉴 -->
                 <v-list flat>

@@ -1,5 +1,10 @@
 <template>
     <div class="surveyEdit">
+		<!-- 설문 배포 중 상태일 경우 편집 불가 -->
+		<v-overlay v-if="status === 2 || status === 3" style="z-index: 200">
+			<v-card><v-card-title class="text-center">설문이 배포중이거나 종료된 경우 편집이 불가능합니다!<br>새로운 설문을 생성해주세요 :)</v-card-title></v-card>
+		</v-overlay>
+
         <!-- 설문 개요 -->
         <v-container class="mb-12 py-0">
             <v-row justify="space-between" >
@@ -185,7 +190,9 @@
             newSurveyDialog: false,
             surveyInputVaild: true, 
             questionsInputVaild: true, 
-            drawer: null,
+			drawer: null,
+			status: 0,
+			overlay: false,
 
             // 알림창(snackbar) 속성 지정
             topAlert: {
@@ -309,7 +316,8 @@
                 this.$http.get(url, config).then(response => {
                     if(response.data.result){
                         this.survey.title = response.data.info.title
-                        this.survey.description = response.data.info.description
+						this.survey.description = response.data.info.description
+						this.status = response.data.status
 
                         this.survey_input.title = response.data.info.title
                         this.survey_input.description = response.data.info.description
