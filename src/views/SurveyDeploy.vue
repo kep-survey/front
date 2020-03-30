@@ -1,5 +1,5 @@
 <template>
-	<div class="surveyDeploy">
+	<div class="surveyDeploy" style="z-index: 400">
 		<v-container class="mb-8">
 			<h1><span class="font-weight-light">설문</span>배포</h1>
 			<v-container fluid class="deploy-container">
@@ -14,13 +14,13 @@
 						</v-tooltip>
 					</v-col>
 					<v-col cols="7">
-						<v-btn :disabled="status == 3 ? true : false" large color="accent" @click.stop="dialog = true"><span class="btnText">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</span></v-btn> 
+						<v-btn :disabled="status == 3 ? true : false" large color="accent" @click.stop="dialog = true"><span class="btn-text">{{status === 1 ? "배포하기" : (status === 2 ? "설문 진행중" : "설문 종료")}}</span></v-btn> 
 					</v-col>
 				</v-row>
 				<v-row>
 					<v-col cols="3">
 						<span class="font-weight-bold">환영메시지</span>
-						<v-tooltip bottom>
+						<v-tooltip bottom class="deploy-tooltip">
 							<template v-slot:activator="{ on }">
 								<v-icon white v-on="on">info</v-icon>
 							</template>
@@ -29,13 +29,13 @@
 					</v-col>
 					<v-col cols="7">
 						<v-textarea solo v-model="welcomeMsg"></v-textarea>
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="dark-primary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('welcome')" color="dark-primary" class="save-btn" width="100"><span class="btn-span">저장</span></v-btn>
 					</v-col>
 				</v-row>
 				<v-row>
 					<v-col cols="3">
 						<span class="font-weight-bold">종료메시지</span>
-						<v-tooltip bottom>
+						<v-tooltip bottom class="deploy-tooltip">
 							<template v-slot:activator="{ on }">
 								<v-icon white v-on="on">info</v-icon>
 							</template>
@@ -44,7 +44,7 @@
 					</v-col>
 					<v-col cols="7"> 
 						<v-textarea solo v-model="completeMsg"></v-textarea>
-						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="dark-primary" class="saveBtn" width="100"><span class="btnSpan">저장</span></v-btn>
+						<v-btn :disabled="status == 3 ? true : false" v-on:click="onClickSaveSurveyMsg('complete')" color="dark-primary" class="save-btn" width="100"><span class="btn-span">저장</span></v-btn>
 					</v-col>
 				</v-row>
 			</v-container>
@@ -181,7 +181,11 @@
 		font-size: 20px;
 	}
 
-	.btnText {
+	.deploy-tooltip {
+		z-index: 400 !important; 
+	}
+
+	.btn-text {
 		color: black !important;
 	}
 
@@ -189,11 +193,11 @@
 		margin-top: 1rem;
 	}
 
-	.btnSpan {
+	.btn-span {
 		color: white !important;
 	}
 
-	.saveBtn {
+	.save-btn {
 		float: right;
 	}
 

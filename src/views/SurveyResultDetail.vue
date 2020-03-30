@@ -2,12 +2,12 @@
 	<div class="surveyResultDetail">
         <v-container class="mb-8">
             <h1><span class="font-weight-light">결과</span>조회</h1>
-            <div class="resultHeader" style="margin-top: 2rem;">
-                <h1 class="surveyTitle">{{surveyTitle}}</h1>
-                <v-btn class="listBtn" depressed small color="primary--text" @click="$router.go(-1)">목록</v-btn>
+            <div class="result-header" style="margin-top: 2rem;">
+                <h1 class="survey-title">{{surveyTitle}}</h1>
+                <v-btn class="list-btn" depressed small color="primary--text" @click="$router.go(-1)">목록</v-btn>
             </div>
-            <p class="font-weight-bold botUserId">botUserId: {{botUserId}}</p>
-            <div id="detailUnit" style="margin-bottom: 2rem;">
+            <p class="font-weight-bold bot-user-id">botUserId: {{botUserId}}</p>
+            <div id="detail-unit" style="margin-bottom: 2rem;">
                 <template v-for="(item, index) in result">
                     <detail-unit v-if="item.type === 'choice'" :key="'result-' + index" :index=index :question=item.question :type=item.type :options=item.options :answer=item.answer></detail-unit>
                     <detail-unit v-else :key="'result-' + index" :index=index :question=item.question :type=item.type :answer=item.answer></detail-unit>
@@ -56,7 +56,7 @@
 </script>
 
 <style scoped>
-    .resultHeader {
+    .result-header {
         display: flex; 
         width: 700px;
         flex-direction: row;
@@ -64,11 +64,11 @@
         justify-content: space-between;
     }
 
-    .listBtn {
+    .list-btn {
         background-color: black !important;
     }
 
-    .botUserId {
+    .bot-user-id {
         margin-top: 2rem !important;
     }
 </style>

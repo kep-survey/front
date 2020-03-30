@@ -2,7 +2,7 @@
 	<div class="surveyResult">
 		<v-container class="mb-8">
 			<h1><span class="font-weight-light">결과</span>조회</h1>
-			<h1 class="surveyTitle" style="margin-top: 2rem;">{{surveyTitle}}</h1>
+			<h1 class="survey-title" style="margin-top: 2rem;">{{surveyTitle}}</h1>
 			<v-data-table
 				:headers="headers"
 				:items="resultList"
@@ -68,7 +68,7 @@
 		width: 100%;
 	}
 
-	.surveyTitle {
+	.survey-title {
 		margin-top: 2rem;
 	}
 </style>
