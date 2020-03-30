@@ -3,16 +3,16 @@
 		<!-- 설문 배포 중 상태일 경우 편집 불가 -->
 		<v-overlay v-if="status === 2 || status === 3" style="z-index: 200">
 			<v-card><v-card-title class="text-center">설문이 배포중이거나 종료된 경우 편집이 불가능합니다!<br>새로운 설문을 생성해주세요 :)</v-card-title></v-card>
-		</v-overlay>
+		</v-overlay>	
 
         <!-- 설문 개요 -->
-        <v-container class="mb-12 py-0">
+        <v-container class="mb-12 py-0" style="position: relative; z-index: 300">
             <v-row justify="space-between" >
                 <v-col>
                     <h1>{{ survey.title }}</h1>
                 </v-col>
                 <v-col cols="auto">
-                    <v-btn color="accent" class="font-weight-black dark-primary--text elevation-3" @click="saveSurvey" large>
+                    <v-btn color="accent" class="font-weight-black dark-primary--text elevation-3" @click="saveSurvey" large :disabled="status === 1 ? false : true">
                         <v-icon class="mr-2">mdi-content-save-all</v-icon> 저장하기
                     </v-btn>
                 </v-col>
