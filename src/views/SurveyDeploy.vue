@@ -99,7 +99,7 @@
 		name: 'SurveyDeploy',
 		components: {},
 		data: () => ({
-			surveyId: 1,
+			surveyId: -1,
 			welcomeMsg: "",
 			completeMsg: "",
 			status: 1,
@@ -153,18 +153,19 @@
 			}
 		},
 		created: function () {
-				const axios = require('axios');
+			this.surveyId = this.$route.params.survey_id
+			const axios = require('axios');
 
-				axios.get('http://localhost:8081/api/getSurveyDeploy?surveyId=' + this.$route.params.survey_id)
-				.then(res => {
-					let welcomeMsg = res.data.welcomeMsg;
-					let completeMsg = res.data.completeMsg;
+			axios.get('http://localhost:8081/api/getSurveyDeploy?surveyId=' + this.surveyId)
+			.then(res => {
+				let welcomeMsg = res.data.welcomeMsg;
+				let completeMsg = res.data.completeMsg;
 
-					this.welcomeMsg = welcomeMsg;
-					this.completeMsg = completeMsg;
-					this.status = res.data.status;
-				})
-			}
+				this.welcomeMsg = welcomeMsg;
+				this.completeMsg = completeMsg;
+				this.status = res.data.status;
+			})
+		}
 	}
 </script>
 
