@@ -49,7 +49,7 @@
                 <v-card v-bind:key="survey.id" :to="'/survey/edit/'+survey.id" class="mb-6 elevation-4 py-2 px-6" link tile>
                     <v-container>
                         <v-row justify="space-between">
-                            <!-- 이름, 설명, 총 응답수 -->
+                            <!-- 이름, 설명 -->
                             <v-col>
                                 <v-container class="pa-0">
                                     <v-card-title class="survey-list-title font-weight-black pa-0 pb-7">
@@ -58,9 +58,6 @@
                                     <v-card-subtitle class="pa-0 font-weight-bold">
                                         {{ survey.description }} 
                                     </v-card-subtitle>
-                                    <v-card-text class="pa-0">
-                                        총 응답 {{ survey.sumAnswer }}개
-                                    </v-card-text>
                                 </v-container>
                             </v-col>
                             <!-- 프로젝트 옵션 -->
@@ -72,6 +69,11 @@
                                         </v-btn>
                                     </template>
                                     <v-list>
+                                        <v-list-item class="px-5" @click="copySurvey(survey.id)">
+                                            <v-list-item-title>
+                                                <v-icon class="mr-2">mdi-content-copy</v-icon> 복제
+                                            </v-list-item-title>
+                                        </v-list-item>
                                         <v-list-item class="px-5" @click="deleteSurvey(survey.id)">
                                             <v-list-item-title>
                                                 <v-icon class="mr-2">mdi-delete</v-icon> 삭제
@@ -191,7 +193,7 @@
 
                 this.$http.post(url, param, header).then(response => {
                     if(response.data.result){
-                        this.showTopAlert("success", "성공적으로 프로젝트가 삭제됐습니다!")
+                        this.showTopAlert("success", "성공적으로 설문이 삭제됐습니다!")
                         this.setSurveyList()
                     } else {
                         this.showTopAlert("error", response.data.msg)
@@ -199,6 +201,28 @@
                     this.newSurveyDialog = false
                 }).catch(function() {
                     this.showTopAlert("error", "데이터를 받아오지 못했습니다. 잠시후 다시 시도해주세요.")
+                })
+            },
+
+            copySurvey(id) {
+                const url = 'http://localhost:8081/api/copySurvey'
+                const param = {
+                    surveyId: id,
+                }
+                const header = {
+                    'Content-Type': 'application/json'
+                }
+
+                this.$http.post(url, param, header).then(response => {
+                    if(response.data.result) {
+                        this.showTopAlert("success", "성공적으로 설문이 복제되었습니다!");
+                        this.setSurveyList();
+                    } else {
+                        this.showTopAlert("error", response.data.msg);
+                    }
+                    this.newSurveyDialog = false
+                }).catch(() => {
+                    this.showTopAlert("error", "데이터를 받아오지 못했습니다. 잠시후 다시 시도해주세요")
                 })
             }
         },

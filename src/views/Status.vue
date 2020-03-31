@@ -1,27 +1,46 @@
 <template>
 	<div class="status">
 		<v-container class="mb-8">
-			<h1><span class="font-weight-light" style="margin-bottom: 2rem;">설문</span>현황</h1>
-			<v-data-table
-				:headers="headers"
-				:items="statusList"
-				:items-per-page="10"
-				:footer-props="{
-					showFirstLastPage: true,
-					firstIcon: 'mdi-arrow-collapse-left',
-					lastIcon: 'mdi-arrow-collapse-right',
-					prevIcon: 'mdi-minus',
-					nextIcon: 'mdi-plus'
-				}"
-				:sort-by="['endDate', 'startDate']"
-				:sort-desc="[true, true]"
-				class="elevation-1"
-				style="margin-top:2rem"
-			>
-				<template v-slot:item.actions="{ item }">
-					<v-btn text small :to="'survey/result/' + item.surveyId">이동</v-btn>
-				</template>
-			</v-data-table>
+			<h1 class="mb-8"><span class="font-weight-light">설문</span>현황</h1>
+			<v-container class="px-0">
+				<v-card>
+					<v-card-title>
+						<v-text-field
+							v-model="search"
+							append-icon="mdi-magnify"
+							label="Search"
+							single-line
+							hide-details
+							color="teritory"
+						></v-text-field>
+					</v-card-title>
+					<v-data-table
+						:headers="headers"
+						:items="statusList"
+						:items-per-page="10"
+						:footer-props="{
+							showFirstLastPage: true,
+							firstIcon: 'mdi-arrow-collapse-left',
+							lastIcon: 'mdi-arrow-collapse-right',
+							prevIcon: 'mdi-minus',
+							nextIcon: 'mdi-plus'
+						}"
+						:sort-by="['endDate', 'startDate']"
+						:sort-desc="[true, true]"
+						:search="search"
+						loading 
+						loading-text="데이터를 불러오는 중입니다..."
+						class="elevation-1"
+					>
+						<template v-slot:item.count="{ item }">
+							<v-chip color="teritary" text-color="dark-primary" small>{{ item.count }}</v-chip>
+						</template>
+						<template v-slot:item.actions="{ item }">
+							<v-chip label color="accent" text-color="black" small :to="'survey/result/' + item.surveyId">이동</v-chip>
+						</template>
+					</v-data-table>
+				</v-card>
+			</v-container>
 		</v-container>
 	</div>
 </template>
@@ -31,6 +50,7 @@
 		name: 'Status',
 		components: {},
 		data: () => ({
+			search: '',
 			registerId: 1,
 			statusList: [],
 			headers: [
@@ -40,7 +60,7 @@
 					sortable: false,
 					value: 'surveyName',
 				},
-				{ text: '응답수', value: 'count' },
+				{ text: '응답수', value: 'count', align: 'center', sortable: false},
 				{ text: '시작 일시', value: 'startDate' },
 				{ text: '종료 일시', value: 'endDate' },
 				{ text: '결과 조회', value: 'actions', sortable: false }
