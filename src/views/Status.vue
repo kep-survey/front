@@ -17,7 +17,7 @@
 					<v-data-table
 						:headers="headers"
 						:items="statusList"
-						:items-per-page="10"
+						:items-per-page="itemsPerPage"
 						:footer-props="{
 							showFirstLastPage: true,
 							firstIcon: 'mdi-arrow-collapse-left',
@@ -28,9 +28,12 @@
 						:sort-by="['endDate', 'startDate']"
 						:sort-desc="[true, true]"
 						:search="search"
+						:page.sync="page"
+						hide-default-footer
 						loading 
 						loading-text="데이터를 불러오는 중입니다..."
 						class="elevation-1"
+						@page-count="pageCount = $event"
 					>
 						<template v-slot:item.count="{ item }">
 							<v-chip color="teritary" text-color="dark-primary" small>{{ item.count }}</v-chip>
@@ -40,6 +43,9 @@
 						</template>
 					</v-data-table>
 				</v-card>
+				<div class="text-center py-2">
+						<v-pagination v-model="page" :length="pageCount" color="blue" total-visible="10"></v-pagination>
+				</div>
 			</v-container>
 		</v-container>
 	</div>
@@ -50,6 +56,9 @@
 		name: 'Status',
 		components: {},
 		data: () => ({
+			page: 1,
+			pageCount: 0,
+			itemsPerPage: 10,
 			search: '',
 			registerId: 1,
 			statusList: [],
