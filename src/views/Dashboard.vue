@@ -49,7 +49,7 @@
                 <v-card v-bind:key="survey.id" :to="'/survey/edit/'+survey.id" class="mb-6 elevation-4 py-2 px-6" link tile>
                     <v-container>
                         <v-row justify="space-between">
-                            <!-- 이름, 설명, 총 응답수 -->
+                            <!-- 이름, 설명 -->
                             <v-col>
                                 <v-container class="pa-0">
                                     <v-card-title class="survey-list-title font-weight-black pa-0 pb-7">
