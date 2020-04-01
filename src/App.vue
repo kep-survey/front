@@ -297,6 +297,8 @@ export default {
             if (this.$refs.editSurveyProjectForm.validate() && this.$refs.editSurveyMsgForm.validate()) {
                 this.setSurveyInfo()
                 this.surveyEditDialog = false
+            } else{
+                this.showTopAlert("error", "비어있거나 잘못 입력된 입력창이 있습니다!")
             }
         },
         cancelInput() {
