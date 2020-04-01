@@ -2,7 +2,6 @@
 	<div class="surveyResult">
 		<v-container class="mb-8">
 			<h1><span class="font-weight-light">결과</span>조회</h1>
-			<h1 class="surveyTitle" style="margin-top: 2rem;">{{surveyTitle}}</h1>
 			<v-data-table
 				:headers="headers"
 				:items="resultList"
@@ -47,19 +46,21 @@
 		methods: {
 		},
 		created: function () {
-				const axios = require('axios');
-				const surveyId = this.$route.params.survey_id;
+			const axios = require('axios');
+			const surveyId = this.$route.params.survey_id;
 
-				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
-				.then(res => {
-					this.resultList = res.data.resultList;
-					this.surveyTitle = res.data.title;
-					this.surveyId = surveyId;
-				})
-				.catch(err => {
-					console.log(err);
-				})
-			}
+			axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
+			.then(res => {
+				this.resultList = res.data.resultList;
+				this.surveyTitle = res.data.title;
+				this.surveyId = surveyId;
+
+				this.$emit('initPage', this.surveyId, false, true) // surveyid, preview, appbar
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		},
 	}
 </script>
 

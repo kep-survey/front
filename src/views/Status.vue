@@ -50,16 +50,16 @@
 			
 		},
 		created: function () {
-				const axios = require('axios');
-				
-				axios.get('http://localhost:8081/api/getSurveyStatus?registerId=' + this.registerId)
-				.then(res => {
-					this.statusList = res.data.statusList;
-				})
-				.catch(err => {
-					console.log(err);
-				})
-			}
+			const axios = require('axios');
+			this.$emit('initPage', 0, false, false) // surveyid, preview, appbar
+			axios.get('http://localhost:8081/api/getSurveyStatus?registerId=' + this.registerId)
+			.then(res => {
+				this.statusList = res.data.statusList;
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		}
 	}
 </script>
 

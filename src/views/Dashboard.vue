@@ -163,6 +163,7 @@
                         this.showTopAlert("error", response.data.msg)
                     }
                     this.newSurveyDialog = false
+                    this.$refs.newSurveyForm.reset() 
                 }).catch(function() {
                     this.showTopAlert("error", "데이터를 받아오지 못했습니다. 잠시후 다시 시도해주세요.")
                 })
@@ -190,9 +191,9 @@
                 }
 
                 this.$http.post(url, param, header).then(response => {
-                    if(response.data.result){
+                    if(response.data.result){ 
                         this.showTopAlert("success", "성공적으로 프로젝트가 삭제됐습니다!")
-                        this.setSurveyList()
+                        this.setSurveyList()    
                     } else {
                         this.showTopAlert("error", response.data.msg)
                     }
@@ -203,6 +204,7 @@
             }
         },
         created: function(){
+            this.$emit('initPage', 0, false, false) // surveyid, preview, appbar
             this.setSurveyList()
         },
     }

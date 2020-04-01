@@ -22,7 +22,7 @@
 						<span class="font-weight-bold">환영메시지</span>
 						<v-tooltip bottom>
 							<template v-slot:activator="{ on }">
-								<v-icon white v-on="on">info</v-icon>
+								<v-icon white v-on="on">mdi-information</v-icon>
 							</template>
 							<span>설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요</span>
 						</v-tooltip>

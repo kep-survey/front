@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import Status from '../views/Status.vue'
 import SurveyEdit from '../views/SurveyEdit.vue'
-import SurveyDeploy from '../views/SurveyDeploy.vue'
+// import SurveyDeploy from '../views/SurveyDeploy.vue'
 import SurveyResult from '../views/SurveyResult.vue'
 import SurveyResultDetail from '../views/SurveyResultDetail.vue'
 
@@ -35,16 +35,16 @@ const routes = [
         name: 'surveyEdit',
         component: SurveyEdit
     },
-    {
-        path: '/survey/deploy/',
-        name: 'surveyDeploy',
-        component: SurveyDeploy
-    },
-    {
-        path: '/survey/deploy/:survey_id',
-        name: 'surveyDeploy',
-        component: SurveyDeploy
-    },
+    // {
+    //     path: '/survey/deploy/',
+    //     name: 'surveyDeploy',
+    //     component: SurveyDeploy
+    // },
+    // {
+    //     path: '/survey/deploy/:survey_id',
+    //     name: 'surveyDeploy',
+    //     component: SurveyDeploy
+    // },
     {
         path: '/survey/result/',
         name: 'surveyResult',
