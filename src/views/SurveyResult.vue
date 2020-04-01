@@ -112,27 +112,29 @@
 		methods: {
 		},
 		created: function () {
-				const axios = require('axios');
-				const surveyId = this.$route.params.survey_id;
+			const axios = require('axios');
+			const surveyId = this.$route.params.survey_id;
 
-				axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
-				.then(res => {
-					this.resultList = res.data.resultList;
-					this.surveyTitle = res.data.title;
-					this.surveyId = surveyId;
-				})
-				.catch(err => {
-					console.log(err);
-				})
+			axios.get('http://localhost:8081/api/getSurveyResultList?surveyId=' + surveyId)
+			.then(res => {
+				this.resultList = res.data.resultList;
+				this.surveyTitle = res.data.title;
+				this.surveyId = surveyId;
 
-				axios.get('http://localhost:8081/api/getSurveyResultAnalysis?surveyId=' + surveyId)
-				.then(res => {
-					this.analysisList = res.data.analysisList;
-				})
-				.catch(err => {
-					console.log(err);
-				})
-			}
+				this.$emit('initPage', this.surveyId, false, true) // surveyid, preview, appbar
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
+			axios.get('http://localhost:8081/api/getSurveyResultAnalysis?surveyId=' + surveyId)
+			.then(res => {
+				this.analysisList = res.data.analysisList;
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		}
 	}
 </script>
 

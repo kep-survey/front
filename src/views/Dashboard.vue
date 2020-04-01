@@ -165,6 +165,7 @@
                         this.showTopAlert("error", response.data.msg)
                     }
                     this.newSurveyDialog = false
+                    this.$refs.newSurveyForm.reset() 
                 }).catch(function() {
                     this.showTopAlert("error", "데이터를 받아오지 못했습니다. 잠시후 다시 시도해주세요.")
                 })
@@ -227,6 +228,7 @@
             }
         },
         created: function(){
+            this.$emit('initPage', 0, false, false) // surveyid, preview, appbar
             this.setSurveyList()
         },
     }

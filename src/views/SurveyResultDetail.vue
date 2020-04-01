@@ -50,6 +50,8 @@
                     this.surveyId = this.$route.params.survey_id;
                     this.botUserId = this.$route.params.bot_user_id;
                     this.surveyTitle = res.data.title;
+
+                    this.$emit('initPage', this.surveyId, false, true) // surveyid, preview, appbar
 				}) 
 			}
 	}
