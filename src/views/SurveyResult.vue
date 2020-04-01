@@ -1,8 +1,7 @@
 <template>
 	<div class="surveyResult">
-		<v-container class="mb-8">
-			<h1><span class="font-weight-light">결과</span>조회</h1>
-			<h1 class="survey-title mb-8" style="margin-top: 2rem;">{{surveyTitle}}</h1>
+		<v-container>
+			<h1 class="mb-8"><span class="font-weight-light">결과</span>조회</h1>
 			<v-tabs
 				v-model="tab"
 				background-color="trapsparent"

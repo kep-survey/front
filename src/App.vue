@@ -41,10 +41,10 @@
 
             <v-dialog v-model="surveyEditDialog" max-width="700px" persistent>
                 <template v-slot:activator="{ on }">
-                    <v-btn :disabled="surveyEntity.status != 1" text class="font-weight-bold dark-primary--text" v-on="on" large>개요 편집</v-btn>
+                    <v-btn text class="font-weight-bold dark-primary--text" v-on="on" large>개요 편집</v-btn>
                 </template>
                 <div>
-                    <v-tabs color="accent">
+                    <v-tabs color="dark-primary">
                         <v-tab>기본 정보 편집</v-tab>
                         <v-tab>참여 메시지 편집</v-tab>
                         <!-- eager: tab item을 lazy loading이 아니라 페이지 생성과 동시에 렌더링 되도록 한다 -->
@@ -87,9 +87,9 @@
                                         설문에서 응답자에게 노출되는 메시지를 설정 할 수 있습니다.
                                         <v-container class="mt-4">
                                             환영메시지
-                                            <v-textarea :rules="msgRules" counter solo v-model="surveyEditInput.welcomeMsg" label="설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요" color="accent" class="mt-3"></v-textarea>
+                                            <v-textarea :rules="msgRules" counter solo v-model="surveyEditInput.welcomeMsg" label="설문 시작 시 응답자에게 노출되는 메시지를 설정해주세요" color="dark-primary" class="mt-3"></v-textarea>
                                             종료메시지
-                                            <v-textarea :rules="msgRules" counter solo v-model="surveyEditInput.completeMsg" label="설문 종료 시 응답자에게 노출되는 메시지를 설정해주세요" color="accent" class="mt-3"></v-textarea>
+                                            <v-textarea :rules="msgRules" counter solo v-model="surveyEditInput.completeMsg" label="설문 종료 시 응답자에게 노출되는 메시지를 설정해주세요" color="dark-primary" class="mt-3"></v-textarea>
                                         </v-container>
                                     </v-card-text>
                                     <v-card-actions>
@@ -117,7 +117,7 @@
                             {{ 
                                 (surveyEntity.status === 1 ? 
                                 "설문을 배포하면 사용자가 설문에 참여할 수 있습니다" : 
-                                "설문이 진행중이거나 종료 됐을경우 편집 기능은 비활성화됍니다.") 
+                                "설문이 진행중이거나 종료되었을경우 편집 기능은 비활성화됩니다.") 
                             }}
                         </span>
                     </v-tooltip>
@@ -353,7 +353,7 @@ export default {
             // api call
             this.$http.post(url, param, header).then(response => {
                 if(response.data.result){
-                    this.showTopAlert("success", "성공적으로 프로젝트가 변경됐습니다!")
+                    this.showTopAlert("success", "성공적으로 설문이 변경되었습니다!")
                     this.getSurveyInfo()
                 } else {
                     this.showTopAlert("error", response.data.msg)

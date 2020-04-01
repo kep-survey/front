@@ -1,11 +1,12 @@
 <template>
 	<div class="surveyResultDetail">
-        <v-container class="mb-8">
-            <h1><span class="font-weight-light">결과</span>조회</h1>
-            <div class="result-header" style="margin-top: 2rem;">
-                <h1 class="survey-title">{{surveyTitle}}</h1>
-                <v-btn class="list-btn" depressed small color="primary--text" @click="$router.go(-1)">목록</v-btn>
-            </div>
+        <v-container>
+            <h1 class="result-header mb-8">
+                <div class="result-title">
+                    <span class="font-weight-light">결과</span>상세
+                </div>
+                <v-btn class="list-btn" depressed medium color="primary--text" @click="$router.go(-1)">목록</v-btn>
+            </h1>
             <p class="font-weight-bold bot-user-id">botUserId: {{botUserId}}</p>
             <div id="detail-unit" style="margin-bottom: 2rem;">
                 <template v-for="(item, index) in result">
@@ -59,9 +60,8 @@
 
 <style scoped>
     .result-header {
-        display: flex; 
         width: 700px;
-        flex-direction: row;
+        display: flex;
         align-items: center;
         justify-content: space-between;
     }
