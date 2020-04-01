@@ -2,13 +2,14 @@
     <div class="analysisUnit">
        <section class="container">
             <p class="question pl-3 font-weight-bold" :key="'unit-' + index" style="margin-bottom:1.5rem">{{ index + 1 }}. {{question}}</p>
+            <v-chip class="mb-4">총 응답수 : {{sumAnswers}}</v-chip>
             <div class="columns" v-if="type === 'choice'">
                 <div class="column">
-                    <bar-chart :datacollection=this.datacollection></bar-chart>
+                    <bar-chart :datacollection=datacollection></bar-chart>
                 </div>
             </div>
             <div v-else>
-                <v-chip class="mb-4">총 응답수 : {{datacollection.length}}</v-chip>
+                
                 <template v-for="(data, index) in datacollection">
                     <v-card :key="'text-' + index" class="pa-3" width="700" min-height="40" style="margin-bottom:1rem;">{{data}}</v-card>
                 </template>
@@ -29,6 +30,7 @@
             'question',
             'type',
             'datacollection',
+            'sumAnswers',
             'index'
 		],
         data: () => ({

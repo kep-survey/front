@@ -72,7 +72,7 @@
 				>
 				<template v-for="(item, index) in analysisList">
 					<section :key="'anaysis-' + index" class="container">
-						<analysis-unit :question=item.question :type=item.type :datacollection=item.datacollection :index=index></analysis-unit>
+						<analysis-unit :question=item.question :type=item.type :datacollection=item.datacollection  :sumAnswers=item.sumAnswers  :index=index></analysis-unit>
 					</section>
 				</template>
 				</v-tab-item>
