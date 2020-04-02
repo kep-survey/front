@@ -30,8 +30,6 @@
 						:search="search"
 						:page.sync="page"
 						hide-default-footer
-						loading 
-						loading-text="데이터를 불러오는 중입니다..."
 						class="elevation-1"
 						@page-count="pageCount = $event"
 					>
