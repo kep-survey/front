@@ -178,7 +178,7 @@
                                         <v-btn v-bind:key="option.id" class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>{{ option.option }}</v-btn>
                                     </template>
                                 </v-col>
-                                <v-col v-else cols="12" class="mt-2 px-5" align="center">
+                                <v-col v-if="previewData.type === 'text'" cols="12" class="mt-2 px-5" align="center">
                                     <v-btn class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>답변하기</v-btn>
                                     <v-btn class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>뒤로가기</v-btn>
                                 </v-col>
