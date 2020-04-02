@@ -173,10 +173,14 @@
                                         </div>
                                     </div>
                                 </v-col>
-                                <v-col v-if="previewData.type ='choice'" cols="12" class="mt-2 px-5" align="center">
+                                <v-col v-if="previewData.type ==='choice'" cols="12" class="mt-2 px-5" align="center">
                                     <template v-for="option in previewData.options">
                                         <v-btn v-bind:key="option.id" class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>{{ option.option }}</v-btn>
                                     </template>
+                                </v-col>
+                                <v-col v-else cols="12" class="mt-2 px-5" align="center">
+                                    <v-btn class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>답변하기</v-btn>
+                                    <v-btn class="quick-applies-btn ma-1 accent font-weight-regular dark-primary--text elevation-2" small rounded>뒤로가기</v-btn>
                                 </v-col>
                             </v-row>
                         </div>
@@ -235,7 +239,7 @@ export default {
         ],
         questionRules: [
             v => !!v || '질문은 필수 사항입니다!',
-            v => (v && v.length <= 70) || '질문은 70자를 넘길 수 없습니다!',
+            v => (v && v.length <= 100) || '질문은 100자를 넘길 수 없습니다!',
         ],
         optionRules: [
             v => !!v || '옵션 텍스트는 필수 사항입니다!',
